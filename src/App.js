@@ -4,18 +4,23 @@ import { products } from "./seed";
 
 class ProductList extends Component {
     render() {
-        const product = products[0];
+        const filteredProducts = products.sort((a, b) => (b.votes - a.votes));
+        const productComponents = filteredProducts.map((product) => (
+            <Product 
+                key={`product-${product.id}`}
+                id={product.id}
+                title={product.title}
+                description={product.description}
+                url={product.url}
+                votes={product.votes}
+                submitterAvatarUrl={product.submitterAvatarUrl}
+                productImageUrl={product.productImageUrl}
+            />
+        ));
+
         return (
             <div className="ui unstackable items">
-                <Product 
-                    id={product.id}
-                    title={product.title}
-                    description={product.description}
-                    url={product.url}
-                    votes={product.votes}
-                    submitterAvatarUrl={product.submitterAvatarUrl}
-                    productImageUrl={product.productImageUrl}
-                />
+                {productComponents}
             </div>
         )
     }
