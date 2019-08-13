@@ -1,15 +1,24 @@
 import React, { Component } from "react";
 
 class Product extends Component {
+
+    constructor(props) {
+        super(props); 
+        this.handleVote = this.handleVote.bind(this);
+    }
+    handleVote() {
+        this.props.onVote(this.props.id);
+    }
+
     render() {
         return (
-            <div class="item">
+            <div className="item">
                 <div className="image">
-                    <img src={this.props.productImageUrl} />
+                    <img src={this.props.productImageUrl} alt={this.props.title}/>
                 </div>
                 <div className="middle aligned content">
                     <div className="header">
-                        <a><i className="large caret up icon"></i></a>
+                        <a onClick={ this.handleVote }><i className="large caret up icon"></i></a>
                         {this.props.votes}
                     </div>
                     <div className="description">
@@ -18,7 +27,7 @@ class Product extends Component {
                     </div>
                     <div className="extra">
                         <span>Submitted by:</span>
-                        <img className="ui avatar image" src={this.props.submitterAvatarUrl} />
+                        <img className="ui avatar image" src={this.props.submitterAvatarUrl} alt={this.title}/>
                     </div>
                 </div>
             </div>

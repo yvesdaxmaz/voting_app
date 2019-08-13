@@ -3,9 +3,37 @@ import Product from "./Product";
 import { products } from "./seed";
 
 class ProductList extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: []
+        };
+        this.handleProductUpVote = this.handleProductUpVote.bind(this); 
+    }
+
+    componentDidMount() {
+        this.setState({products: products});
+    }
+
+    handleProductUpVote (productId) {
+        const newProducts = this.state.products.map((product) => {
+            if(product.id === productId) {
+                return Object.assign({}, product, {
+                    votes: product.votes + 1
+                });
+            } else {
+                return product;
+            }
+        });
+        this.setState({
+            products: newProducts
+        });
+    }
+
     render() {
-        const filteredProducts = products.sort((a, b) => (b.votes - a.votes));
-        const productComponents = filteredProducts.map((product) => (
+        const products = this.state.products.sort((a, b) => (b.votes - a.votes));
+        const productComponents = products.map((product) => (
             <Product 
                 key={`product-${product.id}`}
                 id={product.id}
@@ -15,6 +43,7 @@ class ProductList extends Component {
                 votes={product.votes}
                 submitterAvatarUrl={product.submitterAvatarUrl}
                 productImageUrl={product.productImageUrl}
+                onVote={this.handleProductUpVote}
             />
         ));
 
