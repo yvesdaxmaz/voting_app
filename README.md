@@ -7,3 +7,5 @@ The project is a simple voting application inspired by [Product Hunt](producthun
 ## Custom features
 After looking on the [Product Hunt](producthunt.com) website. The product doesn't include only the up vote feature, there are also feature to add review on that product and we put some comment about the product. I want to integrate that feature also to make application which is a little bit different from the book exercice.
 
+## Demo
+![Voting App](public/voting_app.gif)
