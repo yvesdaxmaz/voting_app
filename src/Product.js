@@ -2,11 +2,7 @@ import React, { Component } from "react";
 
 class Product extends Component {
 
-    constructor(props) {
-        super(props); 
-        this.handleVote = this.handleVote.bind(this);
-    }
-    handleVote() {
+    handleVote = () => {
         this.props.onVote(this.props.id);
     }
 
